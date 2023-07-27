@@ -2,6 +2,10 @@
 include 'curl.php';
 error_reporting(0);
 
+echo "Reff : ";
+$reff = trim(fgets(STDIN));
+
+if ($reff != "") {
 while (true) {
 	$date = date('Y-md');
 	$tgl = explode('-', $date);
@@ -29,8 +33,6 @@ while (true) {
 	$headers[] = 'Pragma: no-cache';
 	$headers[] = 'Cache-Control: no-cache';
 
-	$reff = '2X92AC';
-
 	$waitlist = curl('https://leads.kickofflabs.com/lead/172442', '{"first_name":"'.$name.'","email":"'.$email.'","country":"The Bahamas","__form_name":"Default Form","__rid":"'.random(9).'-d2f9-49c6-bfae-b6a247319434","__uid":"'.random(8).'-54b9-4226-8409-527bfe8c6b64","__sid":"'.random(8).'-e685-47d2-8df5-a7a85ef593ec","__kid":"'.$reff.'","__url":"https://www.harbour.fi/?kid='.$reff.'","__lid":"172442","__language":"en-US","__custom":{},"__source":"cbe","__mm":114,"__kd":0}', $headers, false);
 	$json = json_decode($waitlist, true);
 
@@ -45,5 +47,10 @@ while (true) {
 
 	
 }
+} else {
+	echo "Reff cannot be blank!\n";
+}
+
+
 
 
